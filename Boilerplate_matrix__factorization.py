@@ -6,8 +6,8 @@ def recommend_product(purchased_products, tagged_products):
     # Create a set of all tags
     all_tags = set([tag for product in tagged_products for tag in product['tags']])
 
-    # Create an array of all ratings
-    all_ratings = [rating for product in tagged_products for rating in product['ratings']]
+    # # Create an array of all ratings
+    # all_ratings = [rating for product in tagged_products for rating in product['ratings']]
 
     # Create a dataframe with one-hot encoded tags for each product
     df = pd.DataFrame(tagged_products)
@@ -51,25 +51,25 @@ def recommend_product(purchased_products, tagged_products):
                 product_weights.append(0)
         matrix.append(product_weights)
 
-    # Create a second matrix with all user ratings
-    rating_matrix = []
-    rating_pointer = 0
-    for i in range(len(matrix)): # Rows
-        row = []
-        for j in range(len(matrix[0])): # Columns
-            row.append(all_ratings[rating_pointer])
-            rating_pointer += 1
-        rating_matrix.append(row)
+    # # Create a second matrix with all user ratings
+    # rating_matrix = []
+    # rating_pointer = 0
+    # for i in range(len(matrix)): # Rows
+    #     row = []
+    #     for j in range(len(matrix[0])): # Columns
+    #         row.append(all_ratings[rating_pointer])
+    #         rating_pointer += 1
+    #     rating_matrix.append(row)
 
     # Create a stacked matrix of n x m x 2
     stacked_matrix = [matrix, rating_matrix]
 
     # Create a matrix factorization model
-    svd = TruncatedSVD(n_components=3) # Originally 2, change back if need be
-    svd_matrix = svd.fit_transform(stacked_matrix)
+    svd = TruncatedSVD(n_components=2) # Originally 2, change back if need be
+    svd_matrix = svd.fit_transform(matrix)
 
     # Create a Dataframe with the SVD matrix
-    df_svd = pd.DataFrame(svd_matrix, columns=['x', 'y', 'z']) # NOT SURE ABOUT THIS!!!!
+    df_svd = pd.DataFrame(svd_matrix, columns=['x', 'y'])
     df_svd['id'] = [product['id'] for product in tagged_products]
 
     # Reset the index of the df_svd dataframe
@@ -85,7 +85,7 @@ def recommend_product(purchased_products, tagged_products):
     purchased_ids = [product['id'] for product in purchased_products]
 
     # find similar products
-    similar_products = df_svd[~df_svd['id'].isin(purchased_ids)].sort_values(by=['x', 'y', 'z'], ascending=False).head(3)
+    similar_products = df_svd[~df_svd['id'].isin(purchased_ids)].sort_values(by=['x', 'y'], ascending=False).head(3)
 
     # Extract the ids of the recommended products
     recommended_product_ids = similar_products['id'].tolist()

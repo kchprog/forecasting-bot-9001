@@ -1,4 +1,5 @@
-# Open the input file
+## Raw Data Processing
+
 def process_input(filename) -> list[list[str]]:
     file = open(filename, "r")
     file = file.read()
