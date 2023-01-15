@@ -62,7 +62,7 @@ def recommend_product(purchased_products, tagged_products):
     #     rating_matrix.append(row)
 
     # Create a stacked matrix of n x m x 2
-    stacked_matrix = [matrix, rating_matrix]
+    # stacked_matrix = [matrix, rating_matrix]
 
     # Create a matrix factorization model
     svd = TruncatedSVD(n_components=2) # Originally 2, change back if need be
