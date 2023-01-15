@@ -1,7 +1,7 @@
 ## Helper Functions
 
 from InputProcessor import process_input
-from Boilerplate_matrix__factorization import recommend_product
+from matrix_factorization import recommend_product
 
 
 ## Imports
