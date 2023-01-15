@@ -1,4 +1,5 @@
-# Open the input file
+## Raw Data Processor
+
 def process_input(filename) -> list[list[str]]:
     file = open(filename, "r", encoding='cp850')
     file = file.read()
