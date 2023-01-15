@@ -1,7 +1,7 @@
 ## Raw Data Processor
 
 def process_input(filename) -> list[list[str]]:
-    file = open(filename, "r", encoding='cp850')
+    file = open(filename, "r")
     file = file.read()
     file = file.lower()
     products = file.split("\n\n")
@@ -26,3 +26,7 @@ def process_input(filename) -> list[list[str]]:
             avg_rating = lines[7 + category_count].split()[7]
             product_list.append([id, asin, title, group, salesrank, similar, categories, total_reviews, avg_rating])
     return product_list
+
+
+file_output = process_input(r"C:\Users\lpasu00555\Desktop\Daisy_Hackathon\amazon-meta-short.txt")
+print(file_output)

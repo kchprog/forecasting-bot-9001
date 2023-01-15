@@ -20,7 +20,7 @@ def dictionarize(file_read_output):
         dict = {}
         dict['id'] = item[1]
         dict['tags'] = list(item[6])
-        # dict['ratings'] = list(item[8])
+        dict['ratings'] = item[8]
         list_of_dict.append(dict)
     return list_of_dict
 
@@ -30,7 +30,7 @@ def dictionarize(file_read_output):
 if __name__ == "__main__":
     start_time = time.time()
 
-    file_output = process_input('amazon-meta-short.txt')
+    file_output = process_input(r"C:\Users\lpasu00555\Desktop\Daisy_Hackathon\amazon-meta-short.txt")
 
     new_purchased_products = [{'id': '0000000000', 'tags': ['christianity', 'subjects', 'sermons', 'clergy', 'books', 'preaching', 'religion & spirituality']},
                              {'id': '1111111111', 'tags': ['christianity', 'subjects', 'sermons', 'clergy', 'books', 'preaching', 'religion & spirituality']}]
