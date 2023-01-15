@@ -1,6 +1,6 @@
 # Open the input file
 def process_input(filename) -> list[list[str]]:
-    file = open(filename, "r")
+    file = open(filename, "r", encoding='cp850')
     file = file.read()
     file = file.lower()
     products = file.split("\n\n")
