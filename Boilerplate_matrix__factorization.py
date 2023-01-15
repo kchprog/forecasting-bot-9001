@@ -1,10 +1,6 @@
-## Imports
-
 import pandas as pd
 from sklearn.decomposition import TruncatedSVD
 import math
-
-## Matrix Factorization
 
 def recommend_product(purchased_products, tagged_products):
     # Create a set of all tags
