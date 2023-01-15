@@ -1,7 +1,7 @@
 ## Raw Data Processing
 
 def process_input(filename) -> list[list[str]]:
-    file = open(filename, "r")
+    file = open(filename, "r", encoding='cp850')
     file = file.read()
     file = file.lower()
     products = file.split("\n\n")
@@ -28,5 +28,5 @@ def process_input(filename) -> list[list[str]]:
     return product_list
 
 
-file_output = process_input(r"C:\Users\lpasu00555\Desktop\Daisy_Hackathon\amazon-meta-short.txt")
+file_output = process_input("amazon-meta-short.txt")
 print(file_output)
